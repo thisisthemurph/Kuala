@@ -1,9 +1,11 @@
 {
-	"name": "kuala",
+	"name": "kuala-api",
 	"version": "1.0.0",
 	"description": "A case and quality assurance system",
 	"main": "index.js",
 	"scripts": {
+		"client": "cd client && npm run start",
+		"server": "nodemon index.js",
 		"start": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
