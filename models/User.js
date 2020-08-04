@@ -1,7 +1,9 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
-const UserSchema = new mongoose.Schema(
+const Schema = mongoose.Schema
+
+const UserSchema = new Schema(
 	{
 		username: {
 			type: String,
@@ -22,6 +24,27 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			maxlength: 280,
 		},
+		notifications: [
+			{
+				message: {
+					type: String,
+					maxlength: 280,
+				},
+				link: String,
+				author: {
+					type: Schema.Types.ObjectId,
+					ref: "User",
+				},
+				actioned: {
+					type: Boolean,
+					default: false,
+				},
+				created: {
+					type: Date,
+					default: Date.now,
+				},
+			},
+		],
 		isAssessor: {
 			type: Boolean,
 			default: false,

@@ -11,7 +11,7 @@ const {
 	reviveUser,
 } = require("../controllers/userController")
 
-userRouter.get("/all", allUsers)
+userRouter.get("/", allUsers)
 
 userRouter.get("/:username", getUser)
 userRouter.put("/:username", updateUser)
