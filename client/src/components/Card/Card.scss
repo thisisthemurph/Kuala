@@ -1,0 +1,61 @@
+.card {
+    background: #fff;
+    padding: 2em;
+    width: 80%;
+    max-width: 450px;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+
+    & + .card {
+        margin-top: 1em;
+    }
+
+    &__header {
+        padding-bottom: 2em;
+        text-align: center;
+        font-style: italic;
+    }
+
+    &__divider {
+        position: relative;
+
+        color: grey;
+        padding: 1em 0;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+
+            position: absolute;
+        }
+
+        &--split {
+            display: grid;
+            grid-template-columns: 1fr min-content 1fr;
+            grid-template-rows: 1fr;
+            grid-column-gap: 2rem;
+            align-items: center;
+            padding: 1em 0;
+
+            &::before,
+            &::after {
+                width: unset;
+                position: unset;
+
+                content: "";
+                background-color: currentColor;
+                height: 1px;
+            }
+
+            &::before {
+                grid-column: 1;
+            }
+
+            &::after {
+                grid-column: 3;
+            }
+        }
+    }
+}
