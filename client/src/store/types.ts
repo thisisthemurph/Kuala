@@ -1,5 +1,7 @@
+import { User } from "../types"
+
 export interface UserState {
-	currentUser: { username: string; password: string } | null
+	currentUser: User | null
 	token: string | null
 }
 

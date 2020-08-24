@@ -1,6 +1,6 @@
 import React from "react"
 
-export const AbsoluteCenter: React.FC = ({ children }) => {
+export const AbsoluteCenter: React.FC = ({ children, ...rest }) => {
 	return (
 		<div
 			style={{
@@ -10,6 +10,7 @@ export const AbsoluteCenter: React.FC = ({ children }) => {
 				width: "100vw",
 				height: "100vh",
 			}}
+			{...rest}
 		>
 			<div
 				style={{
@@ -26,9 +27,17 @@ export const AbsoluteCenter: React.FC = ({ children }) => {
 	)
 }
 
-export const Center: React.FC = ({ children }) => {
+export const Center: React.FC = ({ children, ...rest }) => {
 	return (
-		<div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+		<div
+			style={{
+				display: "flex",
+				alignItems: "center",
+				flexDirection: "column",
+				justifyContent: "center",
+			}}
+			{...rest}
+		>
 			{children}
 		</div>
 	)

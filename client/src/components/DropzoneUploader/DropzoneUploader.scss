@@ -1,0 +1,65 @@
+@import "../../styles/_mixins.scss";
+
+.dzu {
+    $container-padding: 4em;
+
+    &-dropzone {
+        // width: 80%;
+        width: 100%;
+        margin: 4em 0;
+
+        color: $c-primary;
+        background: $c-secondary;
+        border: dashed 4px $c-primary;
+        border-radius: 4px;
+
+        .icon {
+            display: block;
+            width: 65px;
+            height: 65px;
+        }
+
+        p {
+            color: $c-primary;
+        }
+    }
+
+    &-inputLabel,
+    &-inputLabel__error {
+        padding: $container-padding;
+    }
+
+    &-inputLabel {
+        cursor: pointer;
+
+        p {
+            margin-top: 1em;
+        }
+    }
+
+    &-previewContainer {
+        padding: $container-padding $container-padding $container-padding $container-padding;
+
+        & + .dzu-previewContainer {
+            margin-top: 1em;
+        }
+    }
+
+    &-inputLabelWithFiles {
+        display: block;
+        margin-top: 1em;
+    }
+
+    &-input {
+        display: none;
+    }
+
+    &-submitButtonContainer {
+        margin-top: -1em;
+        padding-bottom: $container-padding;
+
+        button {
+            @include button;
+        }
+    }
+}
