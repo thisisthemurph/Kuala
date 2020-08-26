@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
+import Nav from "./Nav"
 import NotFound from "./404"
 import AuthenticatedApp from "./AuthenticatedApp"
 import UnauthenticatedApp from "./UnauthenticatedApp"
@@ -25,8 +26,9 @@ function App() {
 	}, [token])
 
 	return (
-		<div className="App">
-			<Router>
+		<Router>
+			<Nav />
+			<div className="container">
 				<Switch>
 					<Route path="/login">
 						<LoginPage />
@@ -36,19 +38,13 @@ function App() {
 					</Route>
 					<Route path="/">
 						{state.currentUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-
-						{/* {state.currentUser && (
-							<div>
-								<pre>{JSON.stringify(state.currentUser, null, 2)}</pre>
-							</div>
-						)} */}
 					</Route>
 					<Route path="*">
 						<NotFound />
 					</Route>
 				</Switch>
-			</Router>
-		</div>
+			</div>
+		</Router>
 	)
 }
 
