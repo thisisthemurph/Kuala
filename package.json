@@ -16,19 +16,7 @@
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
-		"formik": "^2.1.5",
 		"jwt-simple": "^0.5.6",
-		"mongoose": "^5.9.25",
-		"react-dropzone": "^11.0.3",
-		"react-dropzone-uploader": "^2.11.0",
-		"react-router-dom": "^5.2.0"
-	},
-	"devDependencies": {
-		"@types/jest": "^26.0.9",
-		"@types/node": "^14.0.27",
-		"@types/react": "^16.9.45",
-		"@types/react-dom": "^16.9.8",
-		"@types/react-router-dom": "^5.1.5",
-		"typescript": "^3.9.7"
+		"mongoose": "^5.9.25"
 	}
 }
