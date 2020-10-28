@@ -25,6 +25,9 @@ const client = (endpoint: string, { body, ...customConfig }: ReqConfig = {}) => 
 	}
 
 	return fetch(`${API_URL}/${endpoint}`, config).then(async (response) => {
+		// Return if there is no response body
+		if (response.status === 204) return { success: true }
+
 		const data = await response.json()
 
 		if (response.ok) {
