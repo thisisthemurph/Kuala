@@ -1,0 +1,30 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+.exhibitSelect {
+    @include neumprphism;
+
+    cursor: pointer;
+    padding: 1.5rem 2.5rem;
+    border: solid 0 transparent;
+    border-radius: 4px;
+    font-size: 1.5rem;
+
+    &:hover,
+    &:focus {
+        box-shadow: 2px 2px 6px rgba(black, 0.4);
+    }
+
+    &:focus {
+        text-decoration: underline;
+        outline-offset: -8px;
+    }
+
+    &--selected {
+        box-shadow: 2px 2px 6px rgba(black, 0.4);
+    }
+
+    &__selected-icon {
+        color: rgb(71, 190, 71);
+    }
+}

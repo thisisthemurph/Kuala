@@ -4,17 +4,21 @@ import { Switch, Route } from "react-router-dom"
 import NotFound from "../404"
 
 import NewCasePage from "../../pages/NewCasePage"
+import ProfilePage from "../../pages/ProfilePage"
+import SubmitQAPage from "../../pages/SubmitQAPage"
 
 export const AuthenticatedApplication = () => {
 	return (
 		<>
 			<Switch>
 				<Route exact path="/">
-					<h1>Profile</h1>
-					<p>This is your profile</p>
+					<ProfilePage />
 				</Route>
 				<Route path="/new">
 					<NewCasePage />
+				</Route>
+				<Route path="/submit-qa/:caseRef">
+					<SubmitQAPage />
 				</Route>
 				<Route path="*">
 					<NotFound />

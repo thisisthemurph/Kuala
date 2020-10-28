@@ -1,5 +1,5 @@
 import client from "../api/api-client"
-import { ErrReturn } from "../types"
+import { ErrReturn, Case } from "../types"
 
 export const newExhibit = async (
 	username: string,
@@ -16,6 +16,17 @@ export const newExhibit = async (
 		})
 
 		return { success: true }
+	} catch (err) {
+		return { success: false, message: err.error }
+	}
+}
+
+export const getCase = async (caseReference: string): Promise<Case | ErrReturn> => {
+	try {
+		if (!caseReference) throw new Error("Please provide a case reference")
+
+		const result = await client(`case/${caseReference}`)
+		return result
 	} catch (err) {
 		return { success: false, message: err.error }
 	}

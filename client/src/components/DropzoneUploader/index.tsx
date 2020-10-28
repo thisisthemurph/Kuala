@@ -158,6 +158,12 @@ export const DropzoneUploader = () => {
 							<li key={ref}>{ref}</li>
 						))}
 					</ul>
+					<Link
+						className="button"
+						to={`/submit-qa/${uploadedCaseReference?.toLowerCase()}`}
+					>
+						Submit for QA
+					</Link>
 				</DropzoneImitator>
 			</Center>
 		)

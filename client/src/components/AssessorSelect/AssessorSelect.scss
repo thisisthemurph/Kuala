@@ -1,0 +1,91 @@
+@import "../../styles/_variables.scss";
+@import "../../styles/_mixins.scss";
+
+$padding: 0.75rem;
+
+.assessor-select {
+    @include neumprphism;
+
+    max-width: 450px;
+
+    &__input {
+        input {
+            border: none;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            font-size: 1.5rem;
+            width: 100%;
+            padding: $padding;
+        }
+    }
+
+    &__results {
+        padding: $padding;
+    }
+
+    &__result {
+        @include neumprphism;
+
+        display: grid;
+        grid-template-columns: 1fr 100px;
+        grid-template-areas:
+            "name quantity"
+            "progress quantity";
+
+        cursor: pointer;
+        margin-bottom: $padding;
+        padding: 1rem;
+        padding-left: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &--selected {
+            background: #eee;
+        }
+
+        &:hover:not(&--selected) {
+            background: #eee;
+        }
+
+        &-name,
+        &-progress,
+        &-quantity {
+            padding: $padding;
+        }
+
+        &-name {
+            grid-area: name;
+        }
+
+        &-progress {
+            grid-area: progress;
+
+            progress {
+                width: 100%;
+            }
+        }
+
+        &-quantity {
+            grid-area: quantity;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                @include neumprphism;
+                background: white;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                font-size: 1.5rem;
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}
