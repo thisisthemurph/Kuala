@@ -73,6 +73,41 @@ module.exports.getQAById = async (req, res, next) => {
 	}
 }
 
+module.exports.getQAByCaseReference = async (req, res, next) => {
+	const { username, caseReference } = req.params
+
+	try {
+		if (!caseReference) throw new Error("A case reference is required to fetch the QA")
+		if (!username) throw new Error("A username is required to fetch the QA")
+
+		const user = await User.findOne({ username: username })
+
+		const qaItems = await (
+			await QA.find({ author: user })
+				.populate(["author", "exhibit"])
+				.populate("assessments.0.assessor", "username")
+				.exec()
+		).filter(function (item) {
+			return item.exhibit.caseReference === caseReference
+		})
+
+		if (qaItems.length === 0)
+			return res.status(404).json({
+				error: `No QAs found with case reference '${caseReference}' for user ${username}`,
+			})
+
+		return res.json({
+			author: user.username,
+			reference: caseReference,
+			exhibits: qaItems.map((item) => {
+				return { exhibit: item.exhibit, assessments: item.assessments }
+			}),
+		})
+	} catch (err) {
+		next(err)
+	}
+}
+
 module.exports.newComment = async (req, res, next) => {
 	const { id } = req.params
 	const { comment } = req.body

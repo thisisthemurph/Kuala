@@ -3,6 +3,7 @@ const userRouter = express.Router()
 
 const {
 	allUsers,
+	getAssessors,
 	getUser,
 	updateUser,
 	deleteUser,
@@ -12,6 +13,7 @@ const {
 } = require("../controllers/userController")
 
 userRouter.get("/", allUsers)
+userRouter.get("/assessors", getAssessors)
 
 userRouter.get("/:username", getUser)
 userRouter.put("/:username", updateUser)

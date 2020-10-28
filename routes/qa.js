@@ -3,6 +3,7 @@ const qaRouter = express.Router()
 
 const {
 	getQAById,
+	getQAByCaseReference,
 	submit,
 	newComment,
 	deleteComment,
@@ -11,6 +12,7 @@ const {
 
 qaRouter.post("/", submit)
 qaRouter.get("/:id", getQAById)
+qaRouter.get("/user/:username/caseReference/:caseReference", getQAByCaseReference)
 
 // Assessment ID not specified as you can only comment on the most recent QA assessment
 qaRouter.post("/:id/comment", newComment)

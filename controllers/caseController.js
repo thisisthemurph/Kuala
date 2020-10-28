@@ -23,20 +23,15 @@ module.exports.getCase = async (req, res, next) => {
 	try {
 		const exhibits = await Exhibit.find({ caseReference })
 
-		if (!exhibits)
+		if (!exhibits || exhibits.length === 0)
 			return res
 				.status(404)
 				.json({ error: "A case with the given reference could not be located" })
 
-		if (exhibits.length === 0)
-			return res.status(404).json({ error: "No exhibits with the given case reference" })
-
 		return res.json({
-			case: {
-				caseReference,
-				numExhibits: exhibits.length,
-				exhibits,
-			},
+			caseReference,
+			numExhibits: exhibits.length,
+			exhibits,
 		})
 	} catch (err) {
 		next(err)

@@ -4,12 +4,50 @@ const QA = require("../models/QA")
 
 module.exports.allUsers = async (req, res, next) => {
 	try {
-		// const users = await User.find("_id username name avatar bio")
 		const users = await User.find()
 		if (!users || users.length === 0)
 			return res.status(404).json({ error: "There don't seem to be any users to find" })
 
 		return res.json(users)
+	} catch (err) {
+		next(err)
+	}
+}
+
+/**
+ * Retrieves all users that have the isAssessor flag set to true
+ */
+module.exports.getAssessors = async (req, res, next) => {
+	function getNumQAs(user) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const qas = await QA.find({ "assessments.0.assessor": user })
+				resolve(qas.length)
+			} catch (err) {
+				reject("There has been an isse determining the number of QAs")
+			}
+		})
+	}
+
+	try {
+		const users = await User.find({ isAssessor: true }, "_id username name isAssessor")
+		if (!users || users.length === 0)
+			return res.status(404).json({ error: "There don't seem to be any assessors to find" })
+
+		const promises = []
+		users.forEach((user) => {
+			promises.push(getNumQAs(user))
+		})
+
+		const countsPerUser = await Promise.all(promises)
+		const assessors = users.map((user, idx) => ({
+			user,
+			info: {
+				qaCount: countsPerUser[idx],
+			},
+		}))
+
+		return res.json(assessors)
 	} catch (err) {
 		next(err)
 	}
@@ -94,7 +132,8 @@ module.exports.getAllCases = async (req, res, next) => {
 }
 
 /**
- * Returns the QAs the user has submitted
+ * returns the QAs the the user has submitted or are assigned to them
+ * TODO: Complete!
  */
 module.exports.getQAs = async (req, res, next) => {
 	const { username, query } = req.params
